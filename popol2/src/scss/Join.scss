@@ -1,0 +1,72 @@
+li{
+    list-style: none;
+}
+#join-form {
+    border: 1px solid #000;
+    height: 550px;
+    width: 500px;
+    display: block;
+    margin: auto;
+    text-align: center;
+    padding-top: 20px;
+}
+#join-form-top{
+    width: 300px;
+    margin: 20px auto;
+    text-align: left;
+}
+#join-form-top h2{
+    margin: 0px;
+    margin: 10px 0px;
+}
+#join-form ul {
+    list-style-type: none;
+    width: 300px;
+    margin: auto;
+    padding: 15px 0px;
+}
+#join-form h5{
+    text-align: left;
+    display: block;
+    width: 200px;
+    margin-bottom: 5px;
+    margin-top: 0px;
+}
+#join-form input{
+    padding: 5px 5px;
+    margin-bottom: 10px;
+    width: 290px;
+}
+#join-btn{
+    background-color: #E2B93B;
+    width: 290px;
+    height: 40px;
+    border-radius: 10px;
+    font-weight: 800;
+    text-align: center;
+}
+#join-form fieldset{
+    border: 0px;
+    border-top: 2px solid black;
+    width: 250px;
+    margin: auto;
+}
+#interwork li{
+    border: 1px solid #000;
+    border-radius: 50px;
+    display: flex;
+    text-align: center;
+    height: 40px;
+    margin-bottom: 10px;
+}
+#interwork li > div:nth-child(1){
+    width: 40px;
+    height: 40px;
+    margin-left: 15px;
+    padding-top: 10px;
+}
+#interwork li > div:nth-child(2){
+    width: 190px;
+    text-align: center;
+    padding-top: 8px;
+}

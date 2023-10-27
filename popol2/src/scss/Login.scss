@@ -1,0 +1,125 @@
+#login-form {
+    border: 1px solid #000;
+    height: 550px;
+    width: 500px;
+    display: block;
+    margin: auto;
+    text-align: center;
+    padding-top: 20px;
+  }
+  #login-form-top{
+    width: 300px;
+    margin: 20px auto;
+    text-align: left;
+  }
+  #login-form-top h2{
+    margin: 0px;
+    margin: 10px 0px;
+  }
+  #login-form ul {
+    list-style-type: none;
+    width: 300px;
+    margin: auto;
+    padding: 15px 0px;
+  }
+  #login-form li{
+    list-style: none;
+  }
+  #login-form h5{
+    text-align: left;
+    display: block;
+    width: 200px;
+    margin-bottom: 5px;
+    margin-top: 0px;
+  }
+  #login-form input{
+    padding: 5px 5px;
+    margin-bottom: 10px;
+    width: 290px;
+  }
+  #toggle-box{
+    display: block;
+    width: 200px;
+    display: flex;
+    margin-top: 15px;
+  }
+  #toggle-box #toggle-txt{
+    height: 20px;
+    margin: auto;
+    margin: 5px;
+  }
+  .toggleSwitch {
+      width: 50px;
+      height: 25px;
+      display: block;
+      position: relative;
+      border-radius: 30px;
+      background-color: #fff;
+      box-shadow: 0 0 16px 3px rgba(0 0 0 / 15%);
+      cursor: pointer;
+      margin: 5px;
+  }
+  .toggleSwitch .toggleButton {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    left: 4px;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background: #E2B93B;
+  
+  }
+  #toggle:checked ~ .toggleSwitch {
+    background: #E2B93B;
+  }
+  #toggle:checked ~ .toggleSwitch .toggleButton {
+    left: calc(100% - 25px);
+    background: #fff;
+  }
+  .toggleSwitch, .toggleButton {
+    transition: all 0.2s ease-in;
+  }
+  #Login-btn{
+    width: 300px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #E2B93B;
+    font-weight: 800;
+    margin: 10px;
+    border: 0px solid;
+  }
+  #find-id{
+    width: 290px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+  }
+  #find-id a{
+    font-weight: 600;
+    color: black;
+  }
+  #interwork li{
+    border: 1px solid #000;
+    border-radius: 50px;
+    display: flex;
+    text-align: center;
+    height: 40px;
+    margin-bottom: 10px;
+  }
+  #interwork li > div:nth-child(1){
+    width: 40px;
+    height: 40px;
+    margin-left: 15px;
+    padding-top: 10px;
+  }
+  #interwork li > div:nth-child(2){
+    width: 190px;
+    text-align: center;
+    padding-top: 8px;
+  
+  }
+  
+  
+  

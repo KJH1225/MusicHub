@@ -19,21 +19,10 @@ class User extends Sequelize.Model {
         allowNull: false,
         comment: "이름",
       },
-      birth: {
-        type: Sequelize.STRING(40),
-        allowNull: false,
-        comment: "생년월일",
-      },
       phone: {
         type: Sequelize.STRING(20),
         allowNull: false,
         comment: "회원 전화번호",
-      },
-      useyn: {
-        type: Sequelize.BOOLEAN, 
-        allowNull: false,
-        defaultValue: 1,
-        comment: "회원 탈퇴여부(가입: 1, 탈퇴: 0)",
       },
       regdate: {
         type: Sequelize.DATE,
@@ -55,10 +44,9 @@ class User extends Sequelize.Model {
 
   static associate(db) {
     //참조키로 Cart모델에 id(sourceKey)를 userId(foreignKey)라는 이름으로 보냄
-    db.User.hasMany(db.Cart, { foreignKey: 'userId', sourceKey: 'id'});
-
-    //참조키로 Order모델에 id(sourceKey)를 userId(foreignKey)라는 이름으로 보냄
-    db.User.hasMany(db.Order, { foreignKey: 'userId', sourceKey: 'id'});
+    db.User.hasMany(db.Pay, { foreignKey: 'userId', sourceKey: 'id'});
+    db.User.hasMany(db.PlayHistory, { foreignKey: 'userId', sourceKey: 'id'});
+    db.User.hasMany(db.PlayList, { foreignKey: 'userId', sourceKey: 'id'});
   }
 };
 

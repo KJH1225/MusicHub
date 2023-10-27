@@ -1,0 +1,27 @@
+박승균
+
+1. fork 하기 - https://github.com/IkGy/Popol.git
+2. fork한 본인git clon하기
+3. git remote add upstream https://github.com/IkGy/Popol.git
+	팀장 저장소 연결하기(최신화하는 용도 push X)
+
+4. git checkout -b '날짜' 으로 브런치 생성후 이동
+5. 자유롭게 코드수정 후 
+	5.0 git add . => git commit -m "업데이트 내용"
+	5.1 git push origin(본인꺼) '브런치 이름'
+	5.2 git fetch upstream 업데이트 확인
+	5.3 새로운 파일있으면 git pull 로 다운로드
+	5.4 5.3을 하면 5.1만 한번더
+6. 본인 fork한 git에 가면 'Compare & pull request'버튼이 있음
+7. 눌러서 대충 설명 달아주고 'Create pull request' 버튼 클릭
+
+다시 하고나서는 다른 업데이트를 하고나면 4번부터 시작
+
+브런치는 코드수정/추가 할때마다 만들어주는게 좋음
+
+
+
+
+
+나머지는 팀장이 알아서
+
