@@ -23,7 +23,7 @@ exports.makeAccessToken = (Object) =>{
   const accessToken = jwt.sign(
       Object,  // 토큰에 담을 JSON 데이터(payload)
       JWT_KEY, //두 번째 인자로는 키(key)
-      {expiresIn: "1m"} //유효시간 2분
+      {expiresIn: "60m"} //유효시간 60분
   );
   console.log("accessToken: ", accessToken);
   return accessToken;

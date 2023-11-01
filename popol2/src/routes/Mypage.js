@@ -28,6 +28,11 @@ const BoxContainer = styled(Box)({
   borderRadius: '8px',
   marginBottom: '20px',
 });
+const BoxContainer1 = styled(Box)({
+  borderBottom: '1px solid #ccc',
+  padding: '20px',
+  marginBottom: '20px',
+});
 
 
 const MyPage = () => {
@@ -110,7 +115,7 @@ const MyPage = () => {
       <MainContent>
         <Toolbar />
         <Container>
-          <BoxContainer>
+          <BoxContainer1>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <div style={{ marginRight: '20px' }}>
               <img src="images/profile.png" alt="user-icon" style={{ width: '60px', height: '60px', borderRadius: '50%' }} />
@@ -120,7 +125,7 @@ const MyPage = () => {
               <p>이번달 등급은 xxx입니다.</p>
             </div>
           </div>
-          </BoxContainer>
+          </BoxContainer1>
           <Grid container spacing={2}>
             <Grid item xs={6}>
               <BoxContainer>
