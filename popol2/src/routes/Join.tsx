@@ -3,8 +3,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -14,8 +12,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { API_URL } from '../config/contansts';
 import '../scss/Join.scss';
-import { API_URL } from '../config/contansts'
 
 function Copyright(props: any) {
   return (
@@ -40,6 +38,11 @@ export default function Join() {
   // 폼 데이터를 담는 상태 변수 선언 및 초기화
   const [formData, setFormData] = useState({
     id: '',
+    idLabel: '',
+    pwdLabel: '',
+    confirmPwdLabel: '',
+    nameLabel: '',
+    phoneLabel: '',
     pwd: '',
     confirmPwd: '',
     name: '',
@@ -49,14 +52,49 @@ export default function Join() {
   // 입력 필드 값 변경 핸들러
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
+
+    // 이메일 형식을 확인하는 정규 표현식
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; // 최소 8자, 숫자와 문자 조합
+    const nameRegex = /^[a-zA-Z가-힣]+$/; // 영문 또는 한글만 허용
+    const phoneRegex = /^\d{10,11}$/; // 10자 또는 11자의 숫자만 허용
+
+      // 각 입력 필드의 유효성 검사
+    let isValid = false;
+    switch (name) {
+      case 'id':
+        isValid = emailRegex.test(value);
+        break;
+      case 'pwd':
+        isValid = passwordRegex.test(value);
+        break;
+      case 'confirmPwd':
+        isValid = value === formData.pwd;
+        break;
+      case 'name':
+        isValid = nameRegex.test(value);
+        break;
+      case 'phone':
+        isValid = phoneRegex.test(value);
+        break;
+      default:
+        break;
+    }
+  
+    // 유효성에 따라 라벨 업데이트
+    const label = isValid ? name.charAt(0).toUpperCase() + name.slice(1) : `올바른 ${name === 'confirmPwd' ? '비밀번호' : name} 형식으로 입력해주세요`;
+  
+    setFormData({ 
+      ...formData,
+      [name]: value,
+      [`${name}Label`]: label, });
   };
 
   // 폼 제출 핸들러
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // 입력값 추출
-    const id = formData.id;
+    const id = formData.id; // 이메일
     const pwd = formData.pwd;
     const confirmPwd = formData.confirmPwd;
     const name = formData.name;
@@ -77,27 +115,6 @@ export default function Join() {
       return alert("모든 필수 항목을 입력해주세요.");
     }
   };
-
-  // const navigate = useNavigate();
-  // const joinSubmit = async (e) =>{
-  //     e.preventDefault();
-  //     const id = e.target.id.value
-  //     const name = e.target.name.value
-  //     const phone = e.target.phone.value
-  //     const pwd = e.target.pwd.value
-  //     if(id.pwd != ""){
-  //         await axios.post(`${API_URL}/user`,{id, name, phone ,pwd})
-  //         .then(() =>{
-  //           alert("가입성공!");
-  //           navigate('/');
-  //         })
-  //         .catch(err =>{
-  //             console.error(err);
-  //         })
-  //     }else{
-  //         return alert("전부 입력해주세요");
-  //     }
-  // }
 
   return (
     <ThemeProvider theme={defaultTheme} >
@@ -125,7 +142,7 @@ export default function Join() {
                   required
                   fullWidth
                   id="id"
-                  label="ID"
+                  label={formData.idLabel || "ID"}
                   autoFocus
                   onChange={handleInputChange}
                 />
@@ -136,7 +153,7 @@ export default function Join() {
                   fullWidth
                   id="pwd"
                   type="password"
-                  label="password"
+                  label={formData.pwdLabel || "Password"}
                   name="pwd"
                   onChange={handleInputChange}
                 />
@@ -146,7 +163,7 @@ export default function Join() {
                   required
                   fullWidth
                   name="confirmPwd"
-                  label="Confirm Password"
+                  label={formData.confirmPwdLabel || "Confirm Password"}
                   type="password"
                   id="confirmPwd"
                   onChange={handleInputChange}
@@ -157,7 +174,7 @@ export default function Join() {
                   required
                   fullWidth
                   name="name"
-                  label="Name"
+                  label={formData.nameLabel || "Name"}
                   id="name"
                   onChange={handleInputChange}
                 />
@@ -167,16 +184,9 @@ export default function Join() {
                   required
                   fullWidth
                   name="phone"
-                  label="Phone Number"
+                  label={formData.phoneLabel || "Phone Number"}
                   id="phone"
                   onChange={handleInputChange}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  required
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="동의하세요."
                 />
               </Grid>
             </Grid>

@@ -5,7 +5,7 @@ import DownloadIcon from "@mui/icons-material/Download";
 import axios from "axios";
 import { API_URL } from "../config/contansts";
 import { getCookie, removeCookie } from "../cookie";
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const CustomAudioPlayer = ({ playList }) => {
   const navigate = useNavigate();
@@ -24,6 +24,12 @@ const CustomAudioPlayer = ({ playList }) => {
           playList: playList[0],
         }
       })
+      .then(() => {
+        alert("추가되었습니다!");
+      })
+      .catch(err => {
+        console.error(err);
+      });
     }else {
       alert('다시 로그인해주세요');
       removeCookie('accessToken');
