@@ -31,6 +31,28 @@ const CustomAudioPlayer = ({ playList }) => {
     }
   }
 
+  const handleDownload = async () => {
+    try {
+      const currentTrack = playList[0];
+      if (currentTrack && currentTrack.musicurl) {
+        const response = await axios.get(`${API_URL}/upload/music/${currentTrack.musicurl}.mp3`, {
+          responseType: 'blob',
+        });
+        const blob = new Blob([response.data], { type: 'audio/mpeg' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = `${currentTrack.name} - ${currentTrack.singer}`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } else {
+        console.error('err.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+  
   return (
     <AudioPlayer
       playList={playList}
@@ -62,8 +84,8 @@ const CustomAudioPlayer = ({ playList }) => {
         player: "bottom",
       }}
     >
-      <button>
-        <DownloadIcon />
+      <button onClick={handleDownload}>
+        <DownloadIcon style={{ cursor: 'pointer' }} />
       </button>
       <button onClick={addPlayList}>
         <PlaylistAddIcon />
